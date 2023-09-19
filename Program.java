@@ -1,25 +1,21 @@
-import models.TableModel;
-import views.BookingViews;
-import presenters.BookingPresenter;
-import java.util.Date;
-
 public class Program {
     public static void main(String[] args) {
-        TableModel model = new TableModel();
-        BookingViews view = new BookingViews();
-        BookingPresenter bookingPresenter = new BookingPresenter(model, view);
+        Input input = new Input();
 
-        bookingPresenter.updateTablesUi();
-        bookingPresenter.onResrvationTable(new Date(), 2, "Ivan");
-        bookingPresenter.onResrvationTable(new Date(), 3, "Andrey");
-        bookingPresenter.onResrvationTable(new Date(), 4, "Svetlana");
-        bookingPresenter.onResrvationTable(new Date(), 1, "OLeg");
 
-        bookingPresenter.updateTablesUi();
+        Order order1 = new Order("Ivan", "apple", 3, 100);
+        Writer writer1 = new Writer(order1);
+        writer1.saveToJson();
 
-        bookingPresenter.changeReservationTable(new Date(), 2, "Ivan");
+        Order order2 = new Order(
+                input.inputFromConsoleName(),
+                input.inputFromConsoleProduct(),
+                input.inputFromConsoleQnt(),
+                input.inputFromConsolePrice()
+                );
+
+        Writer writer2 = new Writer(order2);
+        writer2.saveToJson();
 
     }
-
-
 }
